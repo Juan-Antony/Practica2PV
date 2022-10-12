@@ -13,6 +13,10 @@ public class BulletMovement : MonoBehaviour
     
     private Rigidbody2D mRb; 
     private float timer = 0f;
+    private int GetPointDirection()
+        {
+            return (int)transform.localScale.x;
+        }
 
     void Start()
     {

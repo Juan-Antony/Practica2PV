@@ -22,6 +22,9 @@ public class HeroController : MonoBehaviour
     private Vector3 mRaycastPointCalculated;
     private Animator mAnimator;
     private Transform mBulletSpawnPoint;
+    private bool doublejump = false;
+    public int maxJumpCount = 2;
+    public int jumpsRemaining = 1;
 
     void Start()
     {
@@ -30,6 +33,7 @@ public class HeroController : MonoBehaviour
         mCollider = GetComponent<CapsuleCollider2D>();
         mAnimator = GetComponent<Animator>();
         mBulletSpawnPoint = transform.Find("BulletSpawnPoint");
+        doublejump = false;
     }
 
     void FixedUpdate()
@@ -65,7 +69,8 @@ public class HeroController : MonoBehaviour
             mIsJumping == true ? Color.green : Color.white
         );
     }
-
+    public int playerJumps;
+    private int tempPlayerJumps;
     void Update()
     {
         mMovement = Input.GetAxis("Horizontal");
@@ -79,9 +84,10 @@ public class HeroController : MonoBehaviour
         }
 
         //mIsJumpPressed = Input.GetKeyDown(KeyCode.Space);
-        if (!mIsJumping && Input.GetKeyDown(KeyCode.Space))
+        if (!mIsJumping && Input.GetKeyDown(KeyCode.Space) && (jumpsRemaining > 0))
         {
             mIsJumpPressed = true;
+            jumpsRemaining -= 1;
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -95,12 +101,24 @@ public class HeroController : MonoBehaviour
         mAnimator.SetBool("isFalling", mRb.velocity.y < 0f);
     }
 
+    public int extrajumps = 2;
+
     private void Jump()
     {
-        mRb.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
+        mRb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
         mIsJumping = true;
         mIsJumpPressed = false;
+        doublejump = true;
+        extrajumps = +1;
     }
+    private void Doublejump ()
+    {
+        mRb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
+        mIsJumping = true;
+        mIsJumpPressed = false;
+        doublejump = false;
+    }
+    
 
     private void IsJumping()
     {
@@ -119,6 +137,7 @@ public class HeroController : MonoBehaviour
         {
             // Hay una colision, esta en el suelo
             mIsJumping = false;
+            jumpsRemaining = maxJumpCount;
         }
     }
 
@@ -135,4 +154,7 @@ public class HeroController : MonoBehaviour
     {
         return (int)transform.localScale.x;
     }
+    
+public float jumpHeight = 10;
+    
 }
