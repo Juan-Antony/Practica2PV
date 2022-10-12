@@ -19,6 +19,8 @@ public class ThingController : MonoBehaviour
     private Transform mCanvas;
     private Transform mRaycastPoint;
     private float mHealth;
+    private UnityEngine.Object enemyRef;
+    SpriteRenderer SpriteRenderer;
 
     private bool isAttacking = false;
 
@@ -39,6 +41,8 @@ public class ThingController : MonoBehaviour
 
         mHealth = maxHealth;
         mSlider.maxValue = maxHealth;
+
+        enemyRef = Resources.Load("Enemy1");
         
     }
 
@@ -91,7 +95,7 @@ public class ThingController : MonoBehaviour
             // Morir
             mCanvas.gameObject.SetActive(false);
             mRb.velocity = Vector2.zero;
-            mAnimator.SetTrigger("Die");
+            mAnimator.SetTrigger("Die");           
         }
     }
 }
