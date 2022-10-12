@@ -22,7 +22,6 @@ public class HeroController : MonoBehaviour
     private Vector3 mRaycastPointCalculated;
     private Animator mAnimator;
     private Transform mBulletSpawnPoint;
-    private bool doublejump = false;
     public int maxJumpCount = 2;
     public int jumpsRemaining = 1;
 
@@ -33,7 +32,6 @@ public class HeroController : MonoBehaviour
         mCollider = GetComponent<CapsuleCollider2D>();
         mAnimator = GetComponent<Animator>();
         mBulletSpawnPoint = transform.Find("BulletSpawnPoint");
-        doublejump = false;
     }
 
     void FixedUpdate()
@@ -108,7 +106,6 @@ public class HeroController : MonoBehaviour
         mRb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
         mIsJumping = true;
         mIsJumpPressed = false;
-        doublejump = true;
         extrajumps = +1;
     }
     private void Doublejump ()
@@ -116,7 +113,6 @@ public class HeroController : MonoBehaviour
         mRb.AddForce(Vector3.up * jumpHeight, ForceMode2D.Impulse);
         mIsJumping = true;
         mIsJumpPressed = false;
-        doublejump = false;
     }
     
 
