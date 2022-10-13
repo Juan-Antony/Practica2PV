@@ -30,7 +30,8 @@ public class HeroController : MonoBehaviour
     public float jumpHeight = 10;
     private Slider mSlider;
     private float mPower;
-    //private bool Teleport = false;
+    public bool mTeleport = false;
+    public float distance = 10f;
 
     void Start()
     {
@@ -105,17 +106,27 @@ public class HeroController : MonoBehaviour
             jumpsRemaining -= 1;
         }
 
-        
-
-        mAnimator.SetBool("isJumping", mIsJumping);
-        mAnimator.SetBool("isFalling", mRb.velocity.y < 0f);
-
         if (Input.GetMouseButtonDown(0))
         {
             // Animacion de disparo
             mAnimator.SetTrigger("shoot");
             Fire();
         }
+
+        mAnimator.SetBool("isJumping", mIsJumping);
+        mAnimator.SetBool("isFalling", mRb.velocity.y < 0f);
+
+        if (mTeleport == true)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Teleport();
+                mTeleport = false;
+                mPower = 0f;
+                mSlider.value = mPower;
+            }
+        }
+        
     }
 
     public int extrajumps = 2;
@@ -170,23 +181,26 @@ public class HeroController : MonoBehaviour
         return (int)transform.localScale.x;
     }
 
-    private void Power()
+    public void Power()
     {
         mPower += 25f;
         mSlider.value = mPower;
 
         if (mPower >= 100f)
         {
-             System.Console.WriteLine("lleno");//Teleport = true;
+            mTeleport = true;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public void Teleport()
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (GetPointDirection()>0)
         {
-            Power();
+            transform.position += transform.TransformDirection(Vector3.right)*distance;
+        }else
+        {
+            transform.position += transform.TransformDirection(Vector3.left)*distance;
         }
+    
     }
-
 }
