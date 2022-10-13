@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 1
+  m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -499,7 +499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301695345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 58.12, y: 2.04, z: 0}
+  m_LocalPosition: {x: 58.12, y: 2.31, z: 0}
   m_LocalScale: {x: 0.25121748, y: 0.25188002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3099,8 +3099,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7.1430006, y: -0.1345}
+  m_SizeDelta: {x: -14.286001, y: -0.269}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &606524372
 MonoBehaviour:
@@ -3973,18 +3973,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1469715948, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}
-      propertyPath: m_Colors.m_NormalColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1469715948, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}
-      propertyPath: m_Colors.m_NormalColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1469715948, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}
-      propertyPath: m_Colors.m_NormalColor.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1857094366, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4263,11 +4251,12 @@ MonoBehaviour:
   jumpSpeed: 7
   raycastDistance: 0.5
   prefabBullet: {fileID: 994443674288143860, guid: c9acc7150b8b2464b89828afd2992f5f, type: 3}
+  minPower: 0
   maxJumpCount: 2
   jumpsRemaining: 0
+  jumpHeight: 12
   playerJumps: 2
   extrajumps: 2
-  jumpHeight: 12
 --- !u!95 &1352191963
 Animator:
   serializedVersion: 4
@@ -4384,6 +4373,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1469715948, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}
       propertyPath: m_Colors.m_NormalColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469715949, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469715949, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469715949, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1857094366, guid: 2f4c3c840fa6b4d5da794abae9bea361, type: 3}

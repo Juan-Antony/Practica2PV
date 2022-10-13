@@ -13,6 +13,8 @@ public class HeroController : MonoBehaviour
     private float raycastDistance;
     [SerializeField]
     private GameObject prefabBullet;
+    [SerializeField]
+    private float minPower;
 
     private float mMovement = 0f;    
     private bool mIsJumpPressed = false;
@@ -25,9 +27,10 @@ public class HeroController : MonoBehaviour
     private Transform mBulletSpawnPoint;
     public int maxJumpCount = 2;
     public int jumpsRemaining = 1;
+    public float jumpHeight = 10;
     private Slider mSlider;
     private float mPower;
-    private bool Teleport = false;
+    //private bool Teleport = false;
 
     void Start()
     {
@@ -102,15 +105,17 @@ public class HeroController : MonoBehaviour
             jumpsRemaining -= 1;
         }
 
+        
+
+        mAnimator.SetBool("isJumping", mIsJumping);
+        mAnimator.SetBool("isFalling", mRb.velocity.y < 0f);
+
         if (Input.GetMouseButtonDown(0))
         {
             // Animacion de disparo
             mAnimator.SetTrigger("shoot");
             Fire();
         }
-
-        mAnimator.SetBool("isJumping", mIsJumping);
-        mAnimator.SetBool("isFalling", mRb.velocity.y < 0f);
     }
 
     public int extrajumps = 2;
@@ -158,7 +163,6 @@ public class HeroController : MonoBehaviour
             mBulletSpawnPoint.position, 
             Quaternion.identity
         );
-        Power();
     }
 
     public int GetPointDirection()
@@ -169,14 +173,20 @@ public class HeroController : MonoBehaviour
     private void Power()
     {
         mPower += 25f;
-        mPower.value = mPower;
+        mSlider.value = mPower;
 
-        if (mPower = 100f)
+        if (mPower >= 100f)
         {
-            Teleport = true;
+             System.Console.WriteLine("lleno");//Teleport = true;
         }
     }
-    
-    public float jumpHeight = 10;
-    
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Power();
+        }
+    }
+
 }
