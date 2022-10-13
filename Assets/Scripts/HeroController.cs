@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroController : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class HeroController : MonoBehaviour
     private Transform mBulletSpawnPoint;
     public int maxJumpCount = 2;
     public int jumpsRemaining = 1;
+    private Slider mSlider;
+    private float mPower;
 
     void Start()
     {
@@ -32,6 +35,13 @@ public class HeroController : MonoBehaviour
         mCollider = GetComponent<CapsuleCollider2D>();
         mAnimator = GetComponent<Animator>();
         mBulletSpawnPoint = transform.Find("BulletSpawnPoint");
+        mSlider = transform.Find(
+            "Canvas"
+        ).Find(
+            "PowerBar"
+        ).Find(
+            "Border"
+        ).GetComponent<Slider>();
     }
 
     void FixedUpdate()
