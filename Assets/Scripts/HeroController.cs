@@ -27,6 +27,7 @@ public class HeroController : MonoBehaviour
     public int jumpsRemaining = 1;
     private Slider mSlider;
     private float mPower;
+    private bool Teleport = false;
 
     void Start()
     {
@@ -42,6 +43,9 @@ public class HeroController : MonoBehaviour
         ).Find(
             "Border"
         ).GetComponent<Slider>();
+
+        mPower = minPower;
+        mSlider.minValue = minPower;
     }
 
     void FixedUpdate()
@@ -154,13 +158,25 @@ public class HeroController : MonoBehaviour
             mBulletSpawnPoint.position, 
             Quaternion.identity
         );
+        Power();
     }
 
     public int GetPointDirection()
     {
         return (int)transform.localScale.x;
     }
+
+    private void Power()
+    {
+        mPower += 25f;
+        mPower.value = mPower;
+
+        if (mPower = 100f)
+        {
+            Teleport = true;
+        }
+    }
     
-public float jumpHeight = 10;
+    public float jumpHeight = 10;
     
 }
